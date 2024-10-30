@@ -39,4 +39,4 @@ while (continuar) {
     continuar = prompt("¿Calcular el costo para otro vehículo? (si/no)") === "si";
 }
 
-console.log("Gracias por usar el sistema de estacionamiento.");
+console.log("Gracias por usar el sistema de estacionamiento.")
