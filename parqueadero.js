@@ -25,3 +25,18 @@ function calcularCosto(entrada, salida) {
     return costo;
 }
 
+// Programa principal
+iniciarSesion();
+
+let continuar = true;
+while (continuar) {
+    const entrada = prompt("Ingrese la hora de entrada (formato HH:MM):");
+    const salida = prompt("Ingrese la hora de salida (formato HH:MM):");
+    const costo = calcularCosto(entrada, salida);
+
+    console.log(`El costo de estacionamiento es: $${costo}`);
+
+    continuar = prompt("¿Calcular el costo para otro vehículo? (si/no)") === "si";
+}
+
+console.log("Gracias por usar el sistema de estacionamiento.");
