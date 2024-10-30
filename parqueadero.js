@@ -1,17 +1,24 @@
 // Función de inicio de sesión
 function iniciarSesion() {
-    const usuario = prompt("Ingrese su nombre de usuario:");
-    const contraseña = prompt("Ingrese su contraseña:");
-    // Aquí podrías implementar la validación de usuario y contraseña si es necesario
-    console.log("Inicio de sesión exitoso.");
+    const usuario = document.getElementById("username").value;
+    const contraseña = document.getElementById("password").value;
+
+    if (usuario && contraseña) {
+        console.log("Inicio de sesión exitoso.");
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("parkingSection").style.display = "block";
+    } else {
+        console.error("Error: Usuario o contraseña inválidos.");
+        alert("Por favor, ingrese un nombre de usuario y una contraseña válidos.");
+    }
 }
 
 // Función para calcular el costo de estacionamiento
 function calcularCosto(entrada, salida) {
     const horaEntrada = new Date(`1970-01-01T${entrada}:00`);
     const horaSalida = new Date(`1970-01-01T${salida}:00`);
-
     const diferenciaHoras = (horaSalida - horaEntrada) / (1000 * 60 * 60);
+    
     let costo;
 
     if (diferenciaHoras <= 2) {
@@ -25,18 +32,24 @@ function calcularCosto(entrada, salida) {
     return costo;
 }
 
-// Programa principal
-iniciarSesion();
+// Configurando eventos de botones
+document.getElementById("loginButton").addEventListener("click", iniciarSesion);
+document.getElementById("calculateButton").addEventListener("click", function() {
+    const entrada = document.getElementById("entrada").value;
+    const salida = document.getElementById("salida").value;
 
-let continuar = true;
-while (continuar) {
-    const entrada = prompt("Ingrese la hora de entrada (formato HH:MM):");
-    const salida = prompt("Ingrese la hora de salida (formato HH:MM):");
+    if (!entrada.match(/^\d{2}:\d{2}$/) || !salida.match(/^\d{2}:\d{2}$/)) {
+        alert("Error: Formato de hora inválido. Use HH:MM.");
+        return;
+    }
+
     const costo = calcularCosto(entrada, salida);
+    document.getElementById("result").textContent = `El costo de estacionamiento es: $${costo.toFixed(2)}`;
+    document.getElementById("anotherVehicleButton").style.display = "block";
+});
 
-    console.log(`El costo de estacionamiento es: $${costo}`);
-
-    continuar = prompt("¿Calcular el costo para otro vehículo? (si/no)") === "si";
-}
-
-console.log("Gracias por usar el sistema de estacionamiento.");
+document.getElementById("anotherVehicleButton").addEventListener("click", function() {
+    document.getElementById("entrada").value = '';
+    document.getElementById("salida").value = '';
+    document.getElementById("result").textContent = '';
+});

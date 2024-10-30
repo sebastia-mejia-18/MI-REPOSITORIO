@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>parqueadero</title>
+    <title>Sistema de Estacionamiento</title>
+    <link rel="stylesheet" href="diseño.css">
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Sistema de Estacionamiento</h1>
+        <div id="loginSection">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" id="username" placeholder="Nombre de usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button id="loginButton">Iniciar Sesión</button>
+        </div>
+        
+        <div id="parkingSection" style="display: none;">
+            <h2>Calcular Costo de Estacionamiento</h2>
+            <input type="text" id="entrada" placeholder="Hora de entrada (HH:MM)" required>
+            <input type="text" id="salida" placeholder="Hora de salida (HH:MM)" required>
+            <button id="calculateButton">Calcular Costo</button>
+            <div id="result"></div>
+            <button id="anotherVehicleButton" style="display: none;">Calcular para otro vehículo</button>
+        </div>
+    </div>
     <script src="parqueadero.js"></script>
 </body>
 </html>
